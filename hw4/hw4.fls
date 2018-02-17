@@ -1,9 +1,9 @@
-PWD /Users/christophertse/Documents/School/Spring 2018/CS-4823/hw3
+PWD /Users/christophertse/Documents/School/Spring 2018/CS-4823/hw4
 INPUT /usr/local/texlive/2017/texmf.cnf
 INPUT /usr/local/texlive/2017/texmf-dist/web2c/texmf.cnf
 INPUT /usr/local/texlive/2017/texmf-var/web2c/pdftex/pdflatex.fmt
-INPUT /Users/christophertse/Documents/School/Spring 2018/CS-4823/hw3/hw3.tex
-OUTPUT hw3.log
+INPUT /Users/christophertse/Documents/School/Spring 2018/CS-4823/hw4/hw4.tex
+OUTPUT hw4.log
 INPUT /usr/local/texlive/2017/texmf-dist/tex/latex/base/article.cls
 INPUT /usr/local/texlive/2017/texmf-dist/tex/latex/base/article.cls
 INPUT /usr/local/texlive/2017/texmf-dist/tex/latex/base/size10.clo
@@ -22,10 +22,12 @@ INPUT /usr/local/texlive/2017/texmf-dist/tex/latex/amsmath/amsbsy.sty
 INPUT /usr/local/texlive/2017/texmf-dist/tex/latex/amsmath/amsbsy.sty
 INPUT /usr/local/texlive/2017/texmf-dist/tex/latex/amsmath/amsopn.sty
 INPUT /usr/local/texlive/2017/texmf-dist/tex/latex/amsmath/amsopn.sty
-INPUT /usr/local/texlive/2017/texmf-dist/tex/latex/amscls/amsthm.sty
-INPUT /usr/local/texlive/2017/texmf-dist/tex/latex/amscls/amsthm.sty
+INPUT /usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/amssymb.sty
+INPUT /usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/amssymb.sty
 INPUT /usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/amsfonts.sty
 INPUT /usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+INPUT /usr/local/texlive/2017/texmf-dist/tex/latex/amscls/amsthm.sty
+INPUT /usr/local/texlive/2017/texmf-dist/tex/latex/amscls/amsthm.sty
 INPUT /usr/local/texlive/2017/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
 INPUT /usr/local/texlive/2017/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
 INPUT /usr/local/texlive/2017/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
@@ -151,9 +153,9 @@ INPUT /usr/local/texlive/2017/texmf-dist/tex/generic/pgf/libraries/shapes/pgflib
 INPUT /usr/local/texlive/2017/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshapes.multipart.code.tex
 INPUT /usr/local/texlive/2017/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarypositioning.code.tex
 INPUT /usr/local/texlive/2017/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarypositioning.code.tex
-INPUT hw3.aux
-INPUT hw3.aux
-OUTPUT hw3.aux
+INPUT hw4.aux
+INPUT hw4.aux
+OUTPUT hw4.aux
 INPUT /usr/local/texlive/2017/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 INPUT /usr/local/texlive/2017/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 INPUT /usr/local/texlive/2017/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
@@ -203,7 +205,7 @@ INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm1
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
-OUTPUT hw3.pdf
+OUTPUT hw4.pdf
 INPUT /usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
@@ -217,7 +219,7 @@ INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm5.tfm
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/cm/cmtt10.tfm
-INPUT hw3.aux
+INPUT hw4.aux
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
@@ -226,5 +228,6 @@ INPUT /usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pf
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb
+INPUT /usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb

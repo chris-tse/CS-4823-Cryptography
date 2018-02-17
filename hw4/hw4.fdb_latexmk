@@ -1,6 +1,6 @@
 # Fdb version 3
-["pdflatex"] 1518208913 "/Users/christophertse/Documents/School/Spring 2018/CS-4823/hw3/hw3.tex" "hw3.pdf" "hw3" 1518208915
-  "/Users/christophertse/Documents/School/Spring 2018/CS-4823/hw3/hw3.tex" 1518208914 7965 8f3b0ccea428104ab7f172a8196f4b11 ""
+["pdflatex"] 1518844707 "/Users/christophertse/Documents/School/Spring 2018/CS-4823/hw4/hw4.tex" "hw4.pdf" "hw4" 1518844708
+  "/Users/christophertse/Documents/School/Spring 2018/CS-4823/hw4/hw4.tex" 1518844706 8329 6ae4ad93d18bf3082613b9d9c211bd86 ""
   "/usr/local/texlive/2017/texmf-dist/fonts/map/fontname/texfonts.map" 1480098670 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
   "/usr/local/texlive/2017/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1480098698 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2017/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1480098698 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -33,6 +33,7 @@
   "/usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb" 1480098733 32762 224316ccc9ad3ca0423a14971cfa7fc1 ""
   "/usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb" 1480098733 33993 9b89b85fd2d9df0482bd47194d1d3bf3 ""
   "/usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1480098733 32569 5e5ddc8df908dea60932f3c484a54c0d ""
+  "/usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb" 1480098733 32716 08e384dc442464e7285e891af9f45947 ""
   "/usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb" 1480098733 31099 c85edf1dd5b9e826d67c9c7293b6786c ""
   "/usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb" 1480098734 34694 ad62b13721ee8eda1dcc8993c8bd7041 ""
   "/usr/local/texlive/2017/texmf-dist/tex/context/base/mkii/supp-pdf.mkii" 1480098806 71627 94eb9990bed73c364d7f53f960cc8c5b ""
@@ -103,6 +104,7 @@
   "/usr/local/texlive/2017/texmf-dist/tex/latex/algorithms/algorithm.sty" 1480098820 3249 15763257e50278eef5db1952ccde229c ""
   "/usr/local/texlive/2017/texmf-dist/tex/latex/amscls/amsthm.sty" 1480098820 12225 3cca0d18522255979a1047206228b9d0 ""
   "/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/amsfonts.sty" 1480098820 5949 3f3fd50a8cc94c3d4cbf4fc66cd3df1c ""
+  "/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/amssymb.sty" 1480098820 13829 94730e64147574077f8ecfea9bb69af4 ""
   "/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/umsa.fd" 1480098820 961 6518c6525a34feb5e8250ffa91731cff ""
   "/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/umsb.fd" 1480098820 961 d02606146ba5601b5645f987c92e6193 ""
   "/usr/local/texlive/2017/texmf-dist/tex/latex/amsmath/amsbsy.sty" 1480098820 2210 5c54ab129b848a5071554186d0168766 ""
@@ -143,9 +145,9 @@
   "/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1495593472 2350277 a699055bee05bf8a40b0504752487295 ""
   "/usr/local/texlive/2017/texmf-var/web2c/pdftex/pdflatex.fmt" 1495593487 4129592 0e6cfee100d68e6d96b92c0258f2ff73 ""
   "/usr/local/texlive/2017/texmf.cnf" 1495593465 577 2b71d4d888f9e5560b2e99985915a9fa ""
-  "hw3.aux" 1518208913 232 67c9804b8beffb959b07151077e24120 ""
-  "hw3.tex" 1518208914 7965 8f3b0ccea428104ab7f172a8196f4b11 ""
+  "hw4.aux" 1518844708 232 85dffa23702b78adefa84afe3c73186f ""
+  "hw4.tex" 1518844706 8329 6ae4ad93d18bf3082613b9d9c211bd86 ""
   (generated)
-  "hw3.log"
-  "hw3.pdf"
-  "hw3.aux"
+  "hw4.aux"
+  "hw4.pdf"
+  "hw4.log"
