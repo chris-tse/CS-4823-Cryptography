@@ -1,0 +1,231 @@
+\documentclass{article}
+
+        \usepackage{fancyhdr}
+        \usepackage{extramarks}
+        \usepackage{amsmath}
+        \usepackage{amsthm}
+        \usepackage{amsfonts}
+        \usepackage{tikz}
+        \usepackage[plain]{algorithm}
+        \usepackage{algpseudocode}
+        
+        \usetikzlibrary{automata,positioning}
+        
+        %
+        % Basic Document Settings
+        %
+        
+        \topmargin=-0.45in
+        \evensidemargin=0in
+        \oddsidemargin=0in
+        \textwidth=6.5in
+        \textheight=9.0in
+        \headsep=0.25in
+        
+        \linespread{1.2}
+        
+        \pagestyle{fancy}
+        \lhead{\hmwkAuthorName}
+        \chead{\hmwkClass\ \hmwkTitle}
+        \rhead{\firstxmark}
+        \lfoot{\lastxmark}
+        \cfoot{\thepage}
+        
+        \renewcommand\headrulewidth{0.4pt}
+        \renewcommand\footrulewidth{0.4pt}
+        
+        \setlength\parindent{0pt}
+        \setlength\parskip{0.2cm}
+        
+        %
+        % Create Problem Sections
+        %
+        
+        \newcommand{\enterProblemHeader}[1]{
+            \nobreak\extramarks{}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+            \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+        }
+        
+        \newcommand{\exitProblemHeader}[1]{
+            \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+            \stepcounter{#1}
+            \nobreak\extramarks{Problem \arabic{#1}}{}\nobreak{}
+        }
+        
+        \setcounter{secnumdepth}{0}
+        \newcounter{partCounter}
+        \newcounter{homeworkProblemCounter}
+        \setcounter{homeworkProblemCounter}{1}
+        \nobreak\extramarks{Problem \arabic{homeworkProblemCounter}}{}\nobreak{}
+        
+        %
+        % Homework Problem Environment
+        %
+        % This environment takes an optional argument. When given, it will adjust the
+        % problem counter. This is useful for when the problems given for your
+        % assignment aren't sequential. See the last 3 problems of this template for an
+        % example.
+        %
+        \newenvironment{homeworkProblem}[1][-1]{
+            \ifnum#1>0
+                \setcounter{homeworkProblemCounter}{#1}
+            \fi
+            \section{Problem \arabic{homeworkProblemCounter}}
+            \setcounter{partCounter}{1}
+            \enterProblemHeader{homeworkProblemCounter}
+        }{
+            \exitProblemHeader{homeworkProblemCounter}
+        }
+        
+        %
+        % Homework Details
+        %   - Title
+        %   - Due date
+        %   - Class
+        %   - Author
+        %
+        
+        \newcommand{\hmwkTitle}{Homework\ \#3}
+        \newcommand{\hmwkDueDate}{February 9, 2018}
+        \newcommand{\hmwkClass}{CS 4823}
+        \newcommand{\hmwkAuthorName}{\textbf{Christopher Tse}}
+        
+        %
+        % Title Page
+        %
+        
+        \title{
+            \vspace{2in}
+            \textmd{\textbf{\hmwkClass:\ \hmwkTitle}}\\
+            \normalsize\vspace{0.1in}\small{Due\ on\ \hmwkDueDate}\\
+            \vspace{3in}
+        }
+        
+        \author{\hmwkAuthorName}
+        \date{}
+        
+        \renewcommand{\part}[1]{\textbf{\large Part \Alph{partCounter}}\stepcounter{partCounter}\\}
+        
+        %
+        % Various Helper Commands
+        %
+        
+        % Useful for algorithms
+        \newcommand{\alg}[1]{\textsc{\bfseries \footnotesize #1}}
+        
+        % For derivatives
+        \newcommand{\deriv}[1]{\frac{\mathrm{d}}{\mathrm{d}x} (#1)}
+        
+        % For partial derivatives
+        \newcommand{\pderiv}[2]{\frac{\partial}{\partial #1} (#2)}
+        
+        % Integral dx
+        \newcommand{\dx}{\mathrm{d}x}
+        
+        % Alias for the Solution section header
+        \newcommand{\solution}{\textbf{\large Solution}}
+        
+        % Probability commands: Expectation, Variance, Covariance, Bias
+        \newcommand{\E}{\mathrm{E}}
+        \newcommand{\Var}{\mathrm{Var}}
+        \newcommand{\Cov}{\mathrm{Cov}}
+        \newcommand{\Bias}{\mathrm{Bias}}
+        
+        \begin{document}
+        
+        \maketitle
+        
+        \pagebreak
+        
+        \begin{homeworkProblem}
+            Solve $122x \equiv 3(mod\ 343)$. Show step-by-step calculations.
+            
+            \textbf{Solution}
+        
+            \textbf{Finding GCD}\\
+            Using Euclidean Division Algorithm: 
+            \begin{align*}
+                343 &= 122(2) + 99\\
+                122 &= 99(1) + 23\\
+                99 &= 23(4) + 7\\
+                23 &= 7(3) + 2\\
+                7 &= 2(3) + 1\\
+            \end{align*}
+            Follow with Extended Euclidean Algorithm:
+            \begin{align*}
+                1 &= 7 + 2(-3)\\
+                &= 7 + (23 + 7(-3))(-3) = 7(10) + 23(-3)\\
+                &= (99 + 23(-4))(10) + 23(-3) = 99(10) + 23(-43)\\
+                &= 99(10) + (122 + 99(-1))(-43) = 99(53) + 122(-43)\\
+                &= (343 + 122(-2))(53) + 122(-43)\\
+                1 &= 343(53) + 122(-149)
+            \end{align*}
+            In the case of $122x \equiv 1 (mod\ 343)$ we have $x = -149 \equiv 194 (mod\ 343)$, so for $122x \equiv 3 (mod\ 343)$ we have $x = 194 * 3 (mod\ 343) = 239$
+        \end{homeworkProblem}
+        
+        \pagebreak
+        
+        \begin{homeworkProblem}
+            \textbf{a)} Is your ID number invertible modulo $m = 2^{64}$?   
+            
+            ID = 112971666, since $gcd(ID, 2^{64}) = 2$, there is no inverse.
+            
+            \textbf{b)} Let $a$ be the least integer that is no less than your ID number and is invertible mod m. Use Sage xgcd to find the inverse of $a\ mod\ m$.
+            \begin{verbatim}
+    sage: a = 112971667
+    sage: g,x,y = xgcd(a, 2**64)
+    sage: print(g,x,y)
+    (1, -3514066771570022757, 21520870) 
+            \end{verbatim}
+
+            From the above output from Sage, we can see that $1 = a(-3514066771570022757) + 2^{64}(21520870)$. Therefore, inverse of $a$ is $-3514066771570022757$.
+            
+            \textbf{c)} In a C++ program, assume that there is a variable $x$ with type "unsigned long int" (64bits), and the product of $a$ and $x$ is 2018, what is x?
+            \begin{verbatim}
+    // main.cpp
+    #include <iostream>
+
+    using namespace std;
+    
+    int main() {
+        unsigned long int a = 112971666;
+        cout << a / 2018 << endl;
+        return 0;
+    }
+    
+    // bash output
+    $ make main
+    c++     main.cpp   -o main
+    $ ./main
+    55981
+            \end{verbatim}
+        
+        \end{homeworkProblem}
+        
+        \pagebreak
+        
+        \begin{homeworkProblem}
+            Determine the unit group and the zero divisors of the ring $\mathbb{Z}/16\mathbb{Z}$.
+            
+            \textbf{Unit Group}
+            
+            Unit group is the set of elements in $16\mathbb{Z}$ where $a_i \in \mathbb{Z}$ and $gcd(a_i, 16) = 1$. Therefore: $\lbrace 1, 3, 5, 7, 9, 11, 13, 15 \rbrace$
+            
+            \textbf{Zero Divisors}
+            
+            Zero divisors is the set of elements in $16\mathbb{Z}$ where $a_i \in \mathbb{Z}$ and $gcd(a_i, 16) \neq 1$. Therefore: $\lbrace 2, 4, 6, 8, 10, 12, 14 \rbrace$
+        \end{homeworkProblem}
+        
+        \begin{homeworkProblem}
+            Determine the unit group and the zero divisors of the ring $\mathbb{Z}/15\mathbb{Z}$.
+            
+            \textbf{Unit Group}
+            
+            Unit group is the set of elements in $15\mathbb{Z}$ where $a_i \in \mathbb{Z}$ and $gcd(a_i, 15) = 1$. Therefore: $\lbrace 1, 2, 4, 7, 8, 11, 13, 14 \rbrace$
+            
+            \textbf{Zero Divisors}
+            
+            Zero divisors is the set of elements in $15\mathbb{Z}$ where $a_i \in \mathbb{Z}$ and $gcd(a_i, 15) \neq 1$. Therefore: $\lbrace 3, 5, 6, 9, 10, 12 \rbrace$
+        \end{homeworkProblem}
+        
+        \end{document}
