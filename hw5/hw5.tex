@@ -1,0 +1,357 @@
+\documentclass{article}
+
+        \usepackage{fancyhdr}
+        \usepackage{extramarks}
+        \usepackage{amsmath}
+        \usepackage{amssymb}
+        \usepackage{amsthm}
+        \usepackage{amsfonts}
+        \usepackage{tikz}
+        \usepackage[plain]{algorithm}
+        \usepackage{algpseudocode}
+        
+        \usetikzlibrary{automata,positioning}
+        
+        %
+        % Basic Document Settings
+        %
+        
+        \topmargin=-0.45in
+        \evensidemargin=0in
+        \oddsidemargin=0in
+        \textwidth=6.5in
+        \textheight=9.0in
+        \headsep=0.25in
+        
+        \linespread{1.2}
+        
+        \pagestyle{fancy}
+        \lhead{\hmwkAuthorName}
+        \chead{\hmwkClass\ \hmwkTitle}
+        \rhead{\firstxmark}
+        \lfoot{\lastxmark}
+        \cfoot{\thepage}
+        
+        \renewcommand\headrulewidth{0.4pt}
+        \renewcommand\footrulewidth{0.4pt}
+        
+        \setlength\parindent{0pt}
+        \setlength\parskip{0.2cm}
+        
+        %
+        % Create Problem Sections
+        %
+        
+        \newcommand{\enterProblemHeader}[1]{
+            \nobreak\extramarks{}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+            \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+        }
+        
+        \newcommand{\exitProblemHeader}[1]{
+            \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+            \stepcounter{#1}
+            \nobreak\extramarks{Problem \arabic{#1}}{}\nobreak{}
+        }
+        
+        \setcounter{secnumdepth}{0}
+        \newcounter{partCounter}
+        \newcounter{homeworkProblemCounter}
+        \setcounter{homeworkProblemCounter}{1}
+        \nobreak\extramarks{Problem \arabic{homeworkProblemCounter}}{}\nobreak{}
+        
+        %
+        % Homework Problem Environment
+        %
+        % This environment takes an optional argument. When given, it will adjust the
+        % problem counter. This is useful for when the problems given for your
+        % assignment aren't sequential. See the last 3 problems of this template for an
+        % example.
+        %
+        \newenvironment{homeworkProblem}[1][-1]{
+            \ifnum#1>0
+                \setcounter{homeworkProblemCounter}{#1}
+            \fi
+            \section{Problem \arabic{homeworkProblemCounter}}
+            \setcounter{partCounter}{1}
+            \enterProblemHeader{homeworkProblemCounter}
+        }{
+            \exitProblemHeader{homeworkProblemCounter}
+        }
+        
+        %
+        % Homework Details
+        %   - Title
+        %   - Due date
+        %   - Class
+        %   - Author
+        %
+        
+        \newcommand{\hmwkTitle}{Homework\ \#5}
+        \newcommand{\hmwkDueDate}{February 23, 2018}
+        \newcommand{\hmwkClass}{CS 4823}
+        \newcommand{\hmwkAuthorName}{\textbf{Christopher Tse}}
+        
+        %
+        % Title Page
+        %
+        
+        \title{
+            \vspace{2in}
+            \textmd{\textbf{\hmwkClass:\ \hmwkTitle}}\\
+            \normalsize\vspace{0.1in}\small{Due\ on\ \hmwkDueDate}\\
+            \vspace{3in}
+        }
+        
+        \author{\hmwkAuthorName}
+        \date{}
+        
+        \renewcommand{\part}[1]{\textbf{\large Part \Alph{partCounter}}\stepcounter{partCounter}\\}
+        
+        %
+        % Various Helper Commands
+        %
+        
+        % Useful for algorithms
+        \newcommand{\alg}[1]{\textsc{\bfseries \footnotesize #1}}
+        
+        % For derivatives
+        \newcommand{\deriv}[1]{\frac{\mathrm{d}}{\mathrm{d}x} (#1)}
+        
+        % For partial derivatives
+        \newcommand{\pderiv}[2]{\frac{\partial}{\partial #1} (#2)}
+        
+        % Integral dx
+        \newcommand{\dx}{\mathrm{d}x}
+        
+        % Alias for the Solution section header
+        \newcommand{\solution}{\textbf{\large Solution}}
+        
+        % Probability commands: Expectation, Variance, Covariance, Bias
+        \newcommand{\E}{\mathrm{E}}
+        \newcommand{\Var}{\mathrm{Var}}
+        \newcommand{\Cov}{\mathrm{Cov}}
+        \newcommand{\Bias}{\mathrm{Bias}}
+        \newcommand{\Z}{\mathbb{Z}}
+        
+        \begin{document}
+        
+        \maketitle
+        
+        \pagebreak
+        
+        \begin{homeworkProblem}
+            Let $id$ be your student ID number. Solve the simultaneous congruences:
+            $$
+            \begin{cases}
+                x \equiv 2\mod297359071\\
+                x \equiv 2\mod837582957839\\
+                x \equiv 4\mod id\\                
+            \end{cases}
+            $$
+            
+            \textbf{Solution}
+            
+            Solving the simultaneous congruence using Chinese Remainder Theorem:
+            
+            $m_1 = 297359071,\ m_2 = 837582957839,\ m_3 = id = 112971666$\\
+            $M = m_1 \cdot m_2 \cdot m_3 = 28137049647881671915457739954$\\
+            $M_1 = \frac{M}{m_1} = 94623142160279589774$\\
+            $M_2 = \frac{M}{m_2} = 33593149651082286$\\
+            $M_3 = \frac{M}{m_3} = 249062890228437207569$\\
+            
+            Find integers $y_i$ such that $y_iM_i \equiv 1\mod m_i$. For each case, the Extended Euclidean Algorithm can be used. Using the \texttt{xgcd} function in Sage:
+            
+            $y_1M_1 \equiv 1\mod m_1$\\
+            $94623142160279589774y_1 \equiv 1 \mod 297359071$\\
+            $y_1 = 16501321$\\
+            \\
+            $y_2M_2 \equiv 1\mod m_2$\\
+            $335931496510822864y_2 \equiv 1 \mod 837582957839$\\
+            $y_2 = -358052305891$\\
+            \\
+            $y_3M_3 \equiv 1\mod m_3$\\
+            $249062890228437207569y_3 \equiv 1 \mod 112971666$\\
+            $y_3 = 42024317$
+            
+            For the simultaneous congruence, $x$ can be expressed as: 
+            \begin{align*}
+                x &= \sum_{i=1}^{3}a_iy_iM_i\\
+                &= (2 \cdot 16501321 \cdot 94623142160279589774)+(2 \cdot  -358052305891 \cdot 33593149651082286)\\
+                &+(4 \cdot 42024317 \cdot 249062890228437207569)\\
+                &= -20933395454729205022469678854
+            \end{align*}
+        \end{homeworkProblem}
+        
+        \pagebreak
+        
+        \begin{homeworkProblem}
+            \textbf{Part 1}\\
+            Let $id$ be your student ID number, $p$ be the prime number 93935935937584760927320853927657, and $q$ be the prime number 20395358947549853439147504976967820947509174847. Find an integer $x$ such that\\$x^{37} \equiv id (\mod n)$, where $n = p \cdot q$.
+            
+            \textbf{Solution}
+            \begin{align*}
+                x^{37} &\equiv id \mod n\\
+                x^{37} &\equiv 112971666 \mod n\\        x^{37} &\equiv \begin{cases}
+                    112971666 \mod p\\
+                    112971666 \mod q
+                \end{cases}
+            \end{align*}
+            
+            We can reduce the exponents using Euler's Phi function then taking the modulus, but since $p$ and $q$ are so big, the resulting powers are still 37.
+            
+            This gives us the result:
+            
+            $$x = \begin{cases}
+                57156593804643713070162779699449\\
+                17296737745793791981935423565575416285014857800
+            \end{cases}
+            $$
+            
+            \textbf{Part 2}\\
+            If you do not know the factorization of $n$, can you find $x$ quickly?
+            
+            No
+        \end{homeworkProblem}
+        
+        \pagebreak
+        
+        \begin{homeworkProblem}
+            Find all the positive integers $m$ such that $(\Z/m\Z)^*$ has four elements.
+            
+            \textbf{Solution}
+            
+            Using Euler's Phi Function, we must find some integers $m$ where $m = p^n$ such that $p$ is prime and $n$ is natural. $\phi(p^n) = p^n - p^{n-1}$. Therefore:
+            
+            \begin{align*}
+                4 &= p^n - p^{n-1} \\
+                4 &= (p - 1)p^{n-1}\\
+            \end{align*}
+            
+            We can solve for $p$ using the factorizations of 4. The factorizations of 4 are $1 \cdot 4$ and $2 \cdot 2$. Therefore: 
+            \begin{align*}
+                p &= \begin{cases}
+                    2 &\mbox {where}\ n = 3 \\
+                    5 &\mbox {where}\ n = 1 \\
+                \end{cases} \\
+                &\Downarrow \\
+                m &= 2^3, 5^1 \\
+                m &= 5, 8 
+            \end{align*}
+            
+            Using the factorization of 4 into $1 \cdot 4$ and $2 \cdot 2$ we can also use the multiplicative property of Euler's Phi function. Assume some $x$ and $y$ such that $m = xy$:
+            
+            $$
+                \phi(m) = \phi(x)\phi(y)  
+            $$
+            
+            Using the factors 1 and 4:\\
+            $\phi(x) = 1,\ \phi(y) = 4$\\
+            $x = 2$\\
+            
+            Using 5 from our answer above since $\phi(y) = \phi(m) = 4$, we get:\\
+            $\phi(m) = \phi(2)\phi(5)$\\
+            $m = 10$\\
+            (8 is ignored since $\phi(2)\phi(8) = \phi(16) \neq 4$)
+            
+            However, the factors can be further split into $1 \cdot 2 \cdot 2$:\\
+            
+            $\phi(x) = 1,\ \phi(y_1) = 2,\ \phi(y_2) = 2$\\
+            $x = 2,\ y_1 = 3,\ y_2 = 3$\\
+            $\phi(m) = \phi(2)\phi(3)\phi(6)$\\
+            $m = 12$
+            
+            Putting them together, we get $m = 5, 8, 10, 12$
+            
+        \end{homeworkProblem}
+        
+        \begin{homeworkProblem}
+            Calculate by hand $31^{30^{45}} \mod 35$ using Chinese Remainder Theorem
+            
+            \textbf{Solution}
+            First we split the modulus 35 into its prime factors 5 and 7:
+            $$
+            \begin{cases}
+                31^{30^{45}} \mod 5\\
+                31^{30^{45}} \mod 7
+            \end{cases}
+            $$
+            
+            To reduce the exponent we take the modulus of the phi function of each factor:
+            
+            \begin{align*}
+                \phi(5) &= 4\\
+                \phi(7) &= 6
+            \end{align*}
+            
+            We then obtain:
+            \begin{align*}
+                30^{45} \mod 4\\
+                30^{45} \mod 6\\
+            \end{align*}
+            
+            Since $30 \mod 6 = 0$ then $30^{45} \mod 6 = 0$
+            We can use fast modular exponentiation to calculate these:
+            
+            \begin{align*}
+                30^{1+4+8+32} \mod 4 = (30 \cdot 30^4 \cdot 30^8 \cdot 30^{32}) \mod 4
+            \end{align*}
+            
+            \begin{align*}
+                30 \mod 4 &= 2\\
+                \\
+                30^4 \mod 4 &= (30 \mod 4)(30 \mod 4)(30 \mod 4)(30 \mod 4) \mod 4\\
+                30^2 \mod 4 &= (2 \cdot 2 \cdot 2 \cdot 2) \mod 4\\
+                30^2 \mod 4 &= 16 \mod 4 = 0
+            \end{align*}
+            
+            We do not have to calculate the rest since we multiply the rest of the results. Since one is 0, the end result will be 0. This results in:
+            
+            \begin{align*}
+                30^{45} \equiv 0 \mod 4 \\
+                30^{45} \equiv 0 \mod 6\\
+            \end{align*}
+            
+            Replacing this into our original split simultaneous congruence, we get
+            
+            $$
+            \begin{cases}
+                x \equiv 31^{30^{45}} \equiv 31^0 \equiv 1 \mod 5\\
+                x \equiv 31^{30^{45}} \equiv 31^0 \equiv 1 \mod 7
+            \end{cases}
+            $$
+            
+            We can now solve the resulting simultaneous congruence:
+            
+            $$
+            \begin{cases}
+                x \equiv 1 \mod 5\\
+                x \equiv 1 \mod 7
+            \end{cases}
+            $$
+            
+            $m_1 = 5, m_2 = 7$\\
+            $M = m_1 \cdot m_2 = 35$\\
+            $M_1 = \frac{M}{m_1} = 7$\\
+            $M_2 = \frac{M}{m_2} = 5$\\
+            
+            Find integers $y_i$ such that $y_iM_i \equiv 1 \mod m_i$:
+            
+            $y_1M_1 \equiv 1 \mod m_1$\\
+            $7y_1 \equiv 1 \mod 5$\\
+            $y_1 = -2$\\
+            \\
+            $y_2M_2 \equiv 1 \mod m_1$\\
+            $5y_2 \equiv 1 \mod 7$\\
+            $y_2 = 3$\\
+            
+            For the simultaneous congruence, $x$ can be expressed as: 
+            \begin{align*}
+                x &= \sum_{i=1}^{3}a_iy_iM_i\\
+                &= (1 \cdot -2 \cdot 7)+(1 \cdot 3 \cdot 5)\\
+                &= -14 + 15\\
+                &= 1
+            \end{align*}
+            
+            Therefore, $31^{30^{45}} \mod 35 = 1$
+        \end{homeworkProblem}
+\end{document}
