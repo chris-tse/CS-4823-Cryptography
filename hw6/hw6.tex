@@ -1,0 +1,260 @@
+\documentclass{article}
+
+        \usepackage{fancyhdr}
+        \usepackage{extramarks}
+        \usepackage{amsmath}
+        \usepackage{amssymb}
+        \usepackage{amsthm}
+        \usepackage{amsfonts}
+        \usepackage{tikz}
+        \usepackage[plain]{algorithm}
+        \usepackage{algpseudocode}
+        
+        \usetikzlibrary{automata,positioning}
+        
+        %
+        % Basic Document Settings
+        %
+        
+        \topmargin=-0.45in
+        \evensidemargin=0in
+        \oddsidemargin=0in
+        \textwidth=6.5in
+        \textheight=9.0in
+        \headsep=0.25in
+        
+        \linespread{1.2}
+        
+        \pagestyle{fancy}
+        \lhead{\hmwkAuthorName}
+        \chead{\hmwkClass\ \hmwkTitle}
+        \rhead{\firstxmark}
+        \lfoot{\lastxmark}
+        \cfoot{\thepage}
+        
+        \renewcommand\headrulewidth{0.4pt}
+        \renewcommand\footrulewidth{0.4pt}
+        
+        \setlength\parindent{0pt}
+        \setlength\parskip{0.2cm}
+        
+        %
+        % Create Problem Sections
+        %
+        
+        \newcommand{\enterProblemHeader}[1]{
+            \nobreak\extramarks{}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+            \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+        }
+        
+        \newcommand{\exitProblemHeader}[1]{
+            \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+            \stepcounter{#1}
+            \nobreak\extramarks{Problem \arabic{#1}}{}\nobreak{}
+        }
+        
+        \setcounter{secnumdepth}{0}
+        \newcounter{partCounter}
+        \newcounter{homeworkProblemCounter}
+        \setcounter{homeworkProblemCounter}{1}
+        \nobreak\extramarks{Problem \arabic{homeworkProblemCounter}}{}\nobreak{}
+        
+        %
+        % Homework Problem Environment
+        %
+        % This environment takes an optional argument. When given, it will adjust the
+        % problem counter. This is useful for when the problems given for your
+        % assignment aren't sequential. See the last 3 problems of this template for an
+        % example.
+        %
+        \newenvironment{homeworkProblem}[1][-1]{
+            \ifnum#1>0
+                \setcounter{homeworkProblemCounter}{#1}
+            \fi
+            \section{Problem \arabic{homeworkProblemCounter}}
+            \setcounter{partCounter}{1}
+            \enterProblemHeader{homeworkProblemCounter}
+        }{
+            \exitProblemHeader{homeworkProblemCounter}
+        }
+        
+        %
+        % Homework Details
+        %   - Title
+        %   - Due date
+        %   - Class
+        %   - Author
+        %
+        
+        \newcommand{\hmwkTitle}{Homework\ \#6}
+        \newcommand{\hmwkDueDate}{March 2, 2018}
+        \newcommand{\hmwkClass}{CS 4823}
+        \newcommand{\hmwkAuthorName}{\textbf{Christopher Tse}}
+        
+        %
+        % Title Page
+        %
+        
+        \title{
+            \vspace{2in}
+            \textmd{\textbf{\hmwkClass:\ \hmwkTitle}}\\
+            \normalsize\vspace{0.1in}\small{Due\ on\ \hmwkDueDate}\\
+            \vspace{3in}
+        }
+        
+        \author{\hmwkAuthorName}
+        \date{}
+        
+        \renewcommand{\part}[1]{\textbf{\large Part \Alph{partCounter}}\stepcounter{partCounter}\\}
+        
+        %
+        % Various Helper Commands
+        %
+        
+        % Useful for algorithms
+        \newcommand{\alg}[1]{\textsc{\bfseries \footnotesize #1}}
+        
+        % For derivatives
+        \newcommand{\deriv}[1]{\frac{\mathrm{d}}{\mathrm{d}x} (#1)}
+        
+        % For partial derivatives
+        \newcommand{\pderiv}[2]{\frac{\partial}{\partial #1} (#2)}
+        
+        % Integral dx
+        \newcommand{\dx}{\mathrm{d}x}
+        
+        % Alias for the Solution section header
+        \newcommand{\solution}{\textbf{\large Solution}}
+        
+        % Probability commands: Expectation, Variance, Covariance, Bias
+        \newcommand{\E}{\mathrm{E}}
+        \newcommand{\Var}{\mathrm{Var}}
+        \newcommand{\Cov}{\mathrm{Cov}}
+        \newcommand{\Bias}{\mathrm{Bias}}
+        \newcommand{\Z}{\mathbb{Z}}
+        
+        \begin{document}
+        
+        \maketitle
+        
+        \pagebreak
+        
+        \begin{homeworkProblem}
+            Compute the multiplicative inverse of $x^4 + 1$ modulo $x^10 + x^5 + 1$ over $\Z/2\Z$ using Extended Euclidean Algorithm. You need to show steps.
+            
+            \textbf{Solution}
+            
+            Let $f(x) = x^4 + 1$ and $g(x) = x^{10} + x^5 + 1$. Applying the Extended Euclidean Algorithm using long division:
+            
+            \begin{align*}
+                g(x) &= f(x)(x^6+x^2+x) + (x^2+x+1)\\
+                f(x) &= (x^2+x+1)(x^2+x) + (x+1)\\
+                x^2+x+1 &= (x+1)x + 1\\
+                x+1 &= 1(x+1) + 0
+            \end{align*}
+            
+            Verifying that $gcd(f(x), g(x)) = 1$ we know that an inverse exists. Substituting back up to rewrite in the form of Bezout's Identity:
+            
+            \begin{align*}
+                1 &= (x^2+x+1) - (x+1)(x)\\
+                x+1 &= f(x) - (x^2+x+1)(x^2+x)\\
+                x^2+x+1 &= g(x) - f(x)(x^6+x^2+x)\\
+                \\
+                1 &= (x^2+x+1)-[f(x)-(x^2+x+1)(x^2+x)](x)\\
+                &= g(x) - f(x)(x^6+x^2+x)-\lbrace f(x)-[g(x)-f(x)(x^6+x^2+x)](x^2+x) \rbrace (x)\\
+                &= g(x)-f(x)(x^6+x^2+x)-f(x)+g(x)(x^2+x)(x) - f(x)(x^6+x^2+x)(x^2+x)(x)\\
+                &= g(x)[1+x(x^2+x)] + f(x)(-1)[1+x(x^2+x)(x^6+x^2+x)]\\
+                1 &= g(x)(x^3+x^2+1) + f(x)(x^9+x^8+x^5+1)
+            \end{align*}
+            
+            The multiplicative inverse of $x^4 + 1$ modulo $x^10 + x^5 + 1$ over $\Z/2\Z$ is $x^9+x^8+x^5+1$.
+            
+        \end{homeworkProblem}
+        
+        \pagebreak
+        
+        \begin{homeworkProblem}
+            List all the monic irreducible polynomials over $\Z/3\Z$ of degree 4.
+            
+            \textbf{Solution}
+            
+            A polynomial $p(x)$ is irreducible if it does not have any linear or quadratic factors. Let $M$ be the set of all polynomials of degree 4 over $\Z/3\Z$. 
+            
+            Any polynomial of degree 4 where $p(0) = 0$, $p(1) = 0$, $p(-1) = 0$ has a linear factor. For cases where $p(0) = 0$, we can remove all polynomials from $M$ where the constant is 0. For cases $p(1) = 0$ and $p(-1) = 0$, we can determine them by trial and eliminate the ones that meet those conditions from $M$.
+            
+            After eliminating the polynomials with linear factors, we must also remove from $M$ the polynomials which have quadratic factors. To determine these, we can find all monic irreducible polynomials of degree 2, take the products of all pairs, then remove those products from $M$. The resulting answer set of $M$ is then:
+            
+            $M = \lbrace x^4+x+2,\\
+            \phantom{===}\ x^4+2x+2,\\ 
+            \phantom{===}\ x^4+2x+2,\\ 
+            \phantom{===}\ x^4+x^2+2,\\
+            \phantom{===}\ x^4+x^2+2x+1,\\
+            \phantom{===}\ x^4+2x^2+2,\\
+            \phantom{===}\ x^4+x^3+2,\\
+            \phantom{===}\ x^4+x^3+2x+1,\\
+            \phantom{===}\ x^4+x^3+x^2+1,\\
+            \phantom{===}\ x^4+x^3+x^2+x+1,\\
+            \phantom{===}\ x^4+x^3+x^2+2x+2,\\
+            \phantom{===}\ x^4+x^3+2x^2+2x+2,\\
+            \phantom{===}\ x^4+2x^3+2,\\
+            \phantom{===}\ x^4+2x^3+x+1,\\
+            \phantom{===}\ x^4+2x^3+x+2,\\
+            \phantom{===}\ x^4+2x^3+x^2+1,\\
+            \phantom{===}\ x^4+2x^3+x^2+x+2,\\
+            \phantom{===}\ x^4+2x^3+x^2+2x+1,\\
+            \phantom{===}\ x^4+2x^3+2x^2+x+2 \rbrace$
+            
+        \end{homeworkProblem}
+        
+        \pagebreak
+        
+        \begin{homeworkProblem}
+            Find one irreducible polynomial $f(x)$ of degree 17 over GF(2). Then find a multiplicative generator for $\text{GF(2)}[x]/f(x)$, and prove that it is a multiplicative generator by using Corollary 2.14.3 in the Buchmann book.
+            
+            \textbf{Solution}
+            
+            Using Sage:
+            \begin{verbatim}
+    sage: PR = GF(2)['x']
+    sage: PR.irreducible_element(17)
+            \end{verbatim}
+            
+            We get an irreducible polynomial of $x^{17} + x^3 + 1$.
+            
+            To find the generator for this polynomial, we first find the number of elements in the field. Since modulo over a polynomial of degree 17 results in polynomials of degree 16 or less, the number of elements $n$ is $n = 2^{17} - 1 = 131071$ (removing 0). 
+            
+            Using Corollary 2.14.3, we can find some generator $g$ such that $g^n = 1$.
+            
+            Using sage and testing an arbitrary polynomial $g = a^2 + 1$:
+            
+            \begin{verbatim}
+    sage: F2.<x> = GF(2)[]
+    sage: f = x^17 + x^3 + 1
+    sage: Q.<a> = F2.quotient(f)
+    sage: g = a^2 + 1
+    sage: g ^ 131071 # outputs 1
+            \end{verbatim}
+            
+            We can see that $g^n$ indeed results in 1. Since $n$ is prime, there are no other divisors to check. Therefore, $g$ is a generator for this field.
+            
+        \end{homeworkProblem}
+        
+        \pagebreak
+        
+        \begin{homeworkProblem}
+            Let $d$ be the last three digits of your ID number, viewed as an integer. Find one irreducible polynomial of degree $d$ over GF(2).
+            
+            \textbf{Solution}
+            
+            ID number is 112971666, therefore $d = 666$
+            
+            Using Sage:
+            \begin{verbatim}
+    sage: d = 666
+    sage: PR = GF(2)['x']
+    sage: PR.irreducible_element(666)
+            \end{verbatim}
+            
+            We get an output of $x^{666} + x^{10} + x^7 + x^2 + 1$
+        \end{homeworkProblem}
+\end{document}
