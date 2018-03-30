@@ -9,6 +9,40 @@
         \usepackage{tikz}
         \usepackage[plain]{algorithm}
         \usepackage{algpseudocode}
+        \usepackage{listings}
+        \definecolor{mygreen}{rgb}{0,0.6,0}
+        \definecolor{mygray}{rgb}{0.5,0.5,0.5}
+        \definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+        \lstdefinelanguage{JavaScript}{
+            keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},
+            keywordstyle=\color{blue}\bfseries,
+            ndkeywords={class, export, boolean, throw, implements, import, this},
+            ndkeywordstyle=\color{darkgray}\bfseries,
+            identifierstyle=\color{black},
+            sensitive=false,
+            comment=[l]{//},
+            morecomment=[s]{/*}{*/},
+            commentstyle=\color{purple}\ttfamily,
+            stringstyle=\color{red}\ttfamily,
+            morestring=[b]',
+            morestring=[b]"
+        }
+        \lstset{
+            language=JavaScript,
+            backgroundcolor=\color{white},
+            extendedchars=true,
+            basicstyle=\footnotesize\ttfamily,
+            showstringspaces=false,
+            showspaces=false,
+            numbers=left,
+            numberstyle=\footnotesize,
+            numbersep=9pt,
+            tabsize=2,
+            breaklines=true,
+            showtabs=false,
+            captionpos=b
+        }
         
         \usetikzlibrary{automata,positioning}
         
@@ -86,8 +120,8 @@
         %   - Author
         %
         
-        \newcommand{\hmwkTitle}{Homework\ \#6}
-        \newcommand{\hmwkDueDate}{March 2, 2018}
+        \newcommand{\hmwkTitle}{Homework\ \#7}
+        \newcommand{\hmwkDueDate}{March 9, 2018}
         \newcommand{\hmwkClass}{CS 4823}
         \newcommand{\hmwkAuthorName}{\textbf{Christopher Tse}}
         
@@ -140,121 +174,98 @@
         \pagebreak
         
         \begin{homeworkProblem}
-            Compute the multiplicative inverse of $x^4 + 1$ modulo $x^10 + x^5 + 1$ over $\Z/2\Z$ using Extended Euclidean Algorithm. You need to show steps.
+            Let $w$ be a string over $\lbrace A, B, ... , Z \rbrace$. Choose two Caesar cipher keys $k_1$ and $k_2$. Encrypt the symbols of $w$ having odd index using $k_1$ and those having even index using $k_2$. Then reverse the order of the encrypted string.
+            
+            Show that the above procedure defines a cryptosystem. 
             
             \textbf{Solution}
             
-            Let $f(x) = x^4 + 1$ and $g(x) = x^{10} + x^5 + 1$. Applying the Extended Euclidean Algorithm using long division:
+            A cryptosystem is defined as a tuple $(P, C, K, E, D)$ such that $P$ is a set for the plaintext space, $C$ is a set for the ciphertext space, $K$ is a set for the key space, $E$ is a family of encryption functions, and $D$ is a family of decryption functions. 
             
-            \begin{align*}
-                g(x) &= f(x)(x^6+x^2+x) + (x^2+x+1)\\
-                f(x) &= (x^2+x+1)(x^2+x) + (x+1)\\
-                x^2+x+1 &= (x+1)x + 1\\
-                x+1 &= 1(x+1) + 0
-            \end{align*}
+            The above system is a cyphersystem since there is a plaintext $w$ in the plaintext space $\lbrace A, B, ... , Z \rbrace$ as described. There is also a final encrypted string which is the ciphertext, which corresponds to $C$. We have a key space $K$ which is defined by $k_1$ and $k_2$. Using this key, we can determine the encryption and decryption functions for $E$ and $D$ like we would for a normal Caesar cipher.
             
-            Verifying that $gcd(f(x), g(x)) = 1$ we know that an inverse exists. Substituting back up to rewrite in the form of Bezout's Identity:
+            Determine the plaintext space, the ciphertext space, and the key space.
             
-            \begin{align*}
-                1 &= (x^2+x+1) - (x+1)(x)\\
-                x+1 &= f(x) - (x^2+x+1)(x^2+x)\\
-                x^2+x+1 &= g(x) - f(x)(x^6+x^2+x)\\
-                \\
-                1 &= (x^2+x+1)-[f(x)-(x^2+x+1)(x^2+x)](x)\\
-                &= g(x) - f(x)(x^6+x^2+x)-\lbrace f(x)-[g(x)-f(x)(x^6+x^2+x)](x^2+x) \rbrace (x)\\
-                &= g(x)-f(x)(x^6+x^2+x)-f(x)+g(x)(x^2+x)(x) - f(x)(x^6+x^2+x)(x^2+x)(x)\\
-                &= g(x)[1+x(x^2+x)] + f(x)(-1)[1+x(x^2+x)(x^6+x^2+x)]\\
-                1 &= g(x)(x^3+x^2+1) + f(x)(x^9+x^8+x^5+1)
-            \end{align*}
+            \textbf{Solution}
             
-            The multiplicative inverse of $x^4 + 1$ modulo $x^10 + x^5 + 1$ over $\Z/2\Z$ is $x^9+x^8+x^5+1$.
+            The plaintext and ciphertext space are the same as described in the problem, $\lbrace A, B, ... , Z \rbrace$.
+            
+            The keyspace for both $k_1$ and $k_2$ are any monic degree 1 polynomial since the keys are always in the form of $c = p + n$ for some integer $n$ in a Caesar cipher. 
+            
+        \end{homeworkProblem}
+        
+        % \pagebreak
+        
+        \begin{homeworkProblem}
+            What is the maximum number of different encryption functions of a block cipher over the alphabet $\lbrace 0, 1 \rbrace$ with block length $n$?
+            
+            \textbf{Solution}
+            
+            Since block ciphers are permutations, we can find the number of different encryption functions by finding the number of unique permutations in some block. Let $n$ be the block length, $n_0$ be the number of 0's in the block and $n_1$ be the number of 1's in the block. We then get the number of encryption keys $n_e$ with \[ n_e = \frac{n!}{n_0!n_1!} \]
             
         \end{homeworkProblem}
         
         \pagebreak
         
         \begin{homeworkProblem}
-            List all the monic irreducible polynomials over $\Z/3\Z$ of degree 4.
+            Read the page on frequency analysis and write a program to calculate the frequencies of English letters (case-insensitive) in the section "History and Usage" (not including the title of the section and the text in the figures).
             
             \textbf{Solution}
             
-            A polynomial $p(x)$ is irreducible if it does not have any linear or quadratic factors. Let $M$ be the set of all polynomials of degree 4 over $\Z/3\Z$. 
+            \begin{lstlisting}[language=javascript]
+// frequency.js
+if (process.argv.length < 3) {
+    console.log('Usage: node frequency.js FILENAME');
+    process.exit(1);
+}
+    
+const fs = require('fs');
+const filename = process.argv[2];
+
+// read in input file
+fs.readFile(filename, 'utf8', (err, data) => {
+    if (err) throw err;
+
+    // make the text all lowercase and remove non-alphabet characters then split into array of individual characters
+    let textArr = data.toLowerCase().replace(/[^a-z]/g, '').split('');
+
+    // reduce the array of characters, incrementing count of character if it exists in the object or initializing to 1 if it does not exist yet
+    let result = textArr.reduce( (acc, curr) => {
+        acc[curr] ? acc[curr]++ : acc[curr] = 1;
+        return acc;
+    }, {});
+
+    console.log(result);
+});             
+            \end{lstlisting}
             
-            Any polynomial of degree 4 where $p(0) = 0$, $p(1) = 0$, $p(-1) = 0$ has a linear factor. For cases where $p(0) = 0$, we can remove all polynomials from $M$ where the constant is 0. For cases $p(1) = 0$ and $p(-1) = 0$, we can determine them by trial and eliminate the ones that meet those conditions from $M$.
-            
-            After eliminating the polynomials with linear factors, we must also remove from $M$ the polynomials which have quadratic factors. To determine these, we can find all monic irreducible polynomials of degree 2, take the products of all pairs, then remove those products from $M$. The resulting answer set of $M$ is then:
-            
-            $M = \lbrace x^4+x+2,\\
-            \phantom{===}\ x^4+2x+2,\\ 
-            \phantom{===}\ x^4+2x+2,\\ 
-            \phantom{===}\ x^4+x^2+2,\\
-            \phantom{===}\ x^4+x^2+2x+1,\\
-            \phantom{===}\ x^4+2x^2+2,\\
-            \phantom{===}\ x^4+x^3+2,\\
-            \phantom{===}\ x^4+x^3+2x+1,\\
-            \phantom{===}\ x^4+x^3+x^2+1,\\
-            \phantom{===}\ x^4+x^3+x^2+x+1,\\
-            \phantom{===}\ x^4+x^3+x^2+2x+2,\\
-            \phantom{===}\ x^4+x^3+2x^2+2x+2,\\
-            \phantom{===}\ x^4+2x^3+2,\\
-            \phantom{===}\ x^4+2x^3+x+1,\\
-            \phantom{===}\ x^4+2x^3+x+2,\\
-            \phantom{===}\ x^4+2x^3+x^2+1,\\
-            \phantom{===}\ x^4+2x^3+x^2+x+2,\\
-            \phantom{===}\ x^4+2x^3+x^2+2x+1,\\
-            \phantom{===}\ x^4+2x^3+2x^2+x+2 \rbrace$
-            
+            \begin{verbatim}
+$ node frequency.js input.txt
+            \end{verbatim}
         \end{homeworkProblem}
         
         \pagebreak
         
         \begin{homeworkProblem}
-            Find one irreducible polynomial $f(x)$ of degree 17 over GF(2). Then find a multiplicative generator for $\text{GF(2)}[x]/f(x)$, and prove that it is a multiplicative generator by using Corollary 2.14.3 in the Buchmann book.
+            Suppose that we use Caesar cipher with multiplication over $\Z/26\Z$ (i.e. affine cipher): \[ c = 11 p + 5. \]
+            
+            Can you find the formula for decryption? 
             
             \textbf{Solution}
             
-            Using Sage:
-            \begin{verbatim}
-    sage: PR = GF(2)['x']
-    sage: PR.irreducible_element(17)
-            \end{verbatim}
+            To find the decryption formula we simply perform the inverse operations. We first subtract 5 from the cipher text then multiply by the inverse of the multiplicative factor 11, which is 19. Therefore: 
+            \[ p = 19 (c - 5) \]
             
-            We get an irreducible polynomial of $x^{17} + x^3 + 1$.
-            
-            To find the generator for this polynomial, we first find the number of elements in the field. Since modulo over a polynomial of degree 17 results in polynomials of degree 16 or less, the number of elements $n$ is $n = 2^{17} - 1 = 131071$ (removing 0). 
-            
-            Using Corollary 2.14.3, we can find some generator $g$ such that $g^n = 1$.
-            
-            Using sage and testing an arbitrary polynomial $g = a^2 + 1$:
-            
-            \begin{verbatim}
-    sage: F2.<x> = GF(2)[]
-    sage: f = x^17 + x^3 + 1
-    sage: Q.<a> = F2.quotient(f)
-    sage: g = a^2 + 1
-    sage: g ^ 131071 # outputs 1
-            \end{verbatim}
-            
-            We can see that $g^n$ indeed results in 1. Since $n$ is prime, there are no other divisors to check. Therefore, $g$ is a generator for this field.
-            
-        \end{homeworkProblem}
-        
-        \pagebreak
-        
-        \begin{homeworkProblem}
-            Let $d$ be the last three digits of your ID number, viewed as an integer. Find one irreducible polynomial of degree $d$ over GF(2).
+            What is the ciphertext for "TEXAS"? 
             
             \textbf{Solution}
             
-            ID number is 112971666, therefore $d = 666$
+            "GXYFV"
             
-            Using Sage:
-            \begin{verbatim}
-    sage: d = 666
-    sage: PR = GF(2)['x']
-    sage: PR.irreducible_element(666)
-            \end{verbatim}
+            What is the plaintext for "OKLAHOMA" if we treat it as ciphertext?
             
-            We get an output of $x^{666} + x^{10} + x^7 + x^2 + 1$
+            \textbf{Solution}
+            
+            "PRKJMPDJ"
         \end{homeworkProblem}
 \end{document}
