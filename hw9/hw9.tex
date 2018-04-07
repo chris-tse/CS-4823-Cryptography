@@ -1,0 +1,265 @@
+\documentclass{article}
+
+        \usepackage{fancyhdr}
+        \usepackage{extramarks}
+        \usepackage{amsmath}
+        \usepackage{amssymb}
+        \usepackage{amsthm}
+        \usepackage{amsfonts}
+        \usepackage{tikz}
+        \usepackage{seqsplit}
+        \usepackage{hyperref}
+        \usepackage[plain]{algorithm}
+        \usepackage{algpseudocode}
+        \usepackage{listings}
+        \usepackage{enumitem}
+        \definecolor{mygreen}{rgb}{0,0.6,0}
+        \definecolor{mygray}{rgb}{0.5,0.5,0.5}
+        \definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+        \lstdefinelanguage{JavaScript}{
+            keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},
+            keywordstyle=\color{blue}\bfseries,
+            ndkeywords={class, export, boolean, throw, implements, import, this},
+            ndkeywordstyle=\color{darkgray}\bfseries,
+            identifierstyle=\color{black},
+            sensitive=false,
+            comment=[l]{//},
+            morecomment=[s]{/*}{*/},
+            commentstyle=\color{purple}\ttfamily,
+            stringstyle=\color{red}\ttfamily,
+            morestring=[b]',
+            morestring=[b]"
+        }
+        \lstset{
+            language=JavaScript,
+            backgroundcolor=\color{white},
+            extendedchars=true,
+            basicstyle=\footnotesize\ttfamily,
+            showstringspaces=false,
+            showspaces=false,
+            numbers=left,
+            numberstyle=\footnotesize,
+            numbersep=9pt,
+            tabsize=2,
+            breaklines=true,
+            showtabs=false,
+            captionpos=b
+        }
+        
+        \usetikzlibrary{automata,positioning}
+        
+        %
+        % Basic Document Settings
+        %
+        
+        \topmargin=-0.45in
+        \evensidemargin=0in
+        \oddsidemargin=0in
+        \textwidth=6.5in
+        \textheight=9.0in
+        \headsep=0.25in
+        
+        \linespread{1.2}
+        
+        \pagestyle{fancy}
+        \lhead{\hmwkAuthorName}
+        \chead{\hmwkClass\ \hmwkTitle}
+        \rhead{\firstxmark}
+        \lfoot{\lastxmark}
+        \cfoot{\thepage}
+        
+        \renewcommand\headrulewidth{0.4pt}
+        \renewcommand\footrulewidth{0.4pt}
+        
+        \setlength\parindent{0pt}
+        \setlength\parskip{0.2cm}
+        
+        %
+        % Create Problem Sections
+        %
+        
+        \newcommand{\enterProblemHeader}[1]{
+            \nobreak\extramarks{}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+            \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+        }
+        
+        \newcommand{\exitProblemHeader}[1]{
+            \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+            \stepcounter{#1}
+            \nobreak\extramarks{Problem \arabic{#1}}{}\nobreak{}
+        }
+        
+        \setcounter{secnumdepth}{0}
+        \newcounter{partCounter}
+        \newcounter{homeworkProblemCounter}
+        \setcounter{homeworkProblemCounter}{1}
+        \nobreak\extramarks{Problem \arabic{homeworkProblemCounter}}{}\nobreak{}
+        
+        %
+        % Homework Problem Environment
+        %
+        % This environment takes an optional argument. When given, it will adjust the
+        % problem counter. This is useful for when the problems given for your
+        % assignment aren't sequential. See the last 3 problems of this template for an
+        % example.
+        %
+        \newenvironment{homeworkProblem}[1][-1]{
+            \ifnum#1>0
+                \setcounter{homeworkProblemCounter}{#1}
+            \fi
+            \section{Problem \arabic{homeworkProblemCounter}}
+            \setcounter{partCounter}{1}
+            \enterProblemHeader{homeworkProblemCounter}
+        }{
+            \exitProblemHeader{homeworkProblemCounter}
+        }
+        
+        %
+        % Homework Details
+        %   - Title
+        %   - Due date
+        %   - Class
+        %   - Author
+        %
+        
+        \newcommand{\hmwkTitle}{Homework\ \#9}
+        \newcommand{\hmwkDueDate}{April 6, 2018}
+        \newcommand{\hmwkClass}{CS 4823}
+        \newcommand{\hmwkAuthorName}{\textbf{Christopher Tse}}
+        
+        %
+        % Title Page
+        %
+        
+        \title{
+            \vspace{2in}
+            \textmd{\textbf{\hmwkClass:\ \hmwkTitle}}\\
+            \normalsize\vspace{0.1in}\small{Due\ on\ \hmwkDueDate}\\
+            \vspace{3in}
+        }
+        
+        \author{\hmwkAuthorName}
+        \date{}
+        
+        \renewcommand{\part}[1]{\textbf{\large Part \Alph{partCounter}}\stepcounter{partCounter}\\}
+        
+        %
+        % Various Helper Commands
+        %
+        
+        % Useful for algorithms
+        \newcommand{\alg}[1]{\textsc{\bfseries \footnotesize #1}}
+        
+        % For derivatives
+        \newcommand{\deriv}[1]{\frac{\mathrm{d}}{\mathrm{d}x} (#1)}
+        
+        % For partial derivatives
+        \newcommand{\pderiv}[2]{\frac{\partial}{\partial #1} (#2)}
+        
+        % Integral dx
+        \newcommand{\dx}{\mathrm{d}x}
+        
+        % Alias for the Solution section header
+        \newcommand{\solution}{\textbf{\large Solution}}
+        
+        % Probability commands: Expectation, Variance, Covariance, Bias
+        \newcommand{\E}{\mathrm{E}}
+        \newcommand{\Var}{\mathrm{Var}}
+        \newcommand{\Cov}{\mathrm{Cov}}
+        \newcommand{\Bias}{\mathrm{Bias}}
+        \newcommand{\Z}{\mathbb{Z}}
+        
+        \begin{document}
+        
+        \maketitle
+        
+        \pagebreak
+        
+        \begin{homeworkProblem}
+            Suppose a RSA public key is:
+            
+            
+            \texttt{\seqsplit{n\ =\  1259531756783983515701499777642110356794201569384295868500005799617750548880147110509521944049285041602433244172023804646590835427723055191592144638318476432867385429617360121}}
+            
+            \texttt{e = 65537}
+            
+            
+            
+            \begin{enumerate}[label=(\alph*)]
+                \item What is the cipher text if you encrypt your student ID number using the textbook RSA algorithm?
+                
+                \textbf{Solution}
+                
+                Using Sage:
+                
+                \begin{lstlisting}[language=python]
+n = 1259531756783983515701[...] # Too long to show
+e = 65537
+m = 12971666
+
+R = Integers(n)
+print R(m)**e
+                \end{lstlisting}
+                
+                The output we get is \texttt{\seqsplit{99009315352242465786715311574012216462850619187795282901162931332508387277509348357744985081467310536849937550865181130385731925177677382233084021205368085629126390713138219}}
+                
+                \item Explain why the textbook RSA is not safe for encrypting student ID numbers.  Is the attack ciphertext only, known plaintext, chosen plaintext, or chosen ciphertext? How can you improve the security of the textbook RSA?
+                
+                \textbf{Solution}
+                
+                This is not a safe method since this is using the public key for encryption. Since the public key is made known to the attacker, they can use it to encrypt their own numbers to make it a \textbf{known plaintext} attack.
+                
+                To increase the security, we can do several things. The first measure we can take is to choose a large enough value of $e$ such that $m^e$ is never strictly smaller than the RSA modulus. We can also use techniques such as padding the plaintext with randomized values. 
+                
+            \end{enumerate}
+        \end{homeworkProblem}
+        
+        \pagebreak
+        
+        \begin{homeworkProblem}
+            Examine the certificates of your browser, and find the RSA public key $n$ and $e$ (in decimal) for \\
+            \href{https://www.google.com}{https://www.google.com}.
+            
+            \textbf{Solution}
+            
+            Using OpenSSL we can obtain the public key:
+            
+            \texttt{openssl s\_client -connet www.google.com:443 | openssl x509 -text -pubkey}
+            
+\begin{verbatim}
+-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApBZZku2BwanibJycWr3R
+3gXK7D1f+js+YgU9VRSJ5rBfGpQs479pAUWGf4GDSvhWpBs++guBQuW7/QUuz1/G
++AmJZspNXl5use14uxWDROu88YTBgwDoPoNAwR9RKk8JWkDroLCVnOHf7NGnrUU+
+umuuV/3EWj/zaBAi3mnhVjE41pjPjc/sA4LLyOo2SSdD3sgJy/iizTHtN1cjeCo+
+QDqvQ/rvCYqvhJuQDYS9J8uMZli+zyO2C+qN62rDDUVtxVGWZLS0chZTbS4qSIbZ
+QMz6ssXOAQd8PrsCj/xzOIyoPndDsW8bw3QmYCTMOsHgzR4RQbRfwHIXlgJWsraF
+5QIDAQAB
+-----END PUBLIC KEY-----   
+\end{verbatim}
+            
+            Then using the PyCrypto package, we can decode the $n$ and $e$ values from the public key:
+            
+\begin{lstlisting}[language=python]
+from Crypto.PublicKey import RSA
+key_encoded='''-----BEGIN PUBLIC KEY-----
+MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCdZGziIrJOlRomzh7M9qzo4ibw
+QmwORcVDI0dsfUICLUVRdUN+MJ8ELd55NKsfYy4dZodWX7AmdN02zm1Gk5V5i2Vw
+GVWE205u7DhtRe85W1oR9WTsMact5wuqU6okJd2GKrEGotgd9iuAJm90N6TDeDZ4
+KHEvVEE1yTyvrxQgkwIDAQAB
+-----END PUBLIC KEY-----'''
+
+
+pubkey = RSA.importKey(key_encoded)
+print(pubkey.n)
+print(pubkey.e)
+\end{lstlisting}
+            We find that the $n$ and $e$ are as follows:
+            
+            \texttt{\seqsplit{n\ =\  110524622184298189406696366981362867320131527048683492811128204661745388510505145389459518039217549444918405620726988722254633562452576638635488354260221598432448974859895979017211032905988949400704082939941050902513120244660937339078367607684436944094809985731012813959774525636937965082155868293686780764307}}
+            
+            \texttt{e\ =\ 65537}
+            
+        \end{homeworkProblem}
+\end{document}
