@@ -1,0 +1,364 @@
+\documentclass{article}
+
+        \usepackage{fancyhdr}
+        \usepackage{extramarks}
+        \usepackage{amsmath}
+        \usepackage{amssymb}
+        \usepackage{amsthm}
+        \usepackage{amsfonts}
+        \usepackage{tikz}
+        \usepackage[plain]{algorithm}
+        \usepackage{algpseudocode}
+        \usepackage{listings}
+        \definecolor{mygreen}{rgb}{0,0.6,0}
+        \definecolor{mygray}{rgb}{0.5,0.5,0.5}
+        \definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+        \lstdefinelanguage{JavaScript}{
+            keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},
+            keywordstyle=\color{blue}\bfseries,
+            ndkeywords={class, export, boolean, throw, implements, import, this},
+            ndkeywordstyle=\color{darkgray}\bfseries,
+            identifierstyle=\color{black},
+            sensitive=false,
+            comment=[l]{//},
+            morecomment=[s]{/*}{*/},
+            commentstyle=\color{purple}\ttfamily,
+            stringstyle=\color{red}\ttfamily,
+            morestring=[b]',
+            morestring=[b]"
+        }
+        \lstset{
+            language=JavaScript,
+            backgroundcolor=\color{white},
+            extendedchars=true,
+            basicstyle=\footnotesize\ttfamily,
+            showstringspaces=false,
+            showspaces=false,
+            numbers=left,
+            numberstyle=\footnotesize,
+            numbersep=9pt,
+            tabsize=2,
+            breaklines=true,
+            showtabs=false,
+            captionpos=b
+        }
+        
+        \usetikzlibrary{automata,positioning}
+        
+        %
+        % Basic Document Settings
+        %
+        
+        \topmargin=-0.45in
+        \evensidemargin=0in
+        \oddsidemargin=0in
+        \textwidth=6.5in
+        \textheight=9.0in
+        \headsep=0.25in
+        
+        \linespread{1.2}
+        
+        \pagestyle{fancy}
+        \lhead{\hmwkAuthorName}
+        \chead{\hmwkClass\ \hmwkTitle}
+        \rhead{\firstxmark}
+        \lfoot{\lastxmark}
+        \cfoot{\thepage}
+        
+        \renewcommand\headrulewidth{0.4pt}
+        \renewcommand\footrulewidth{0.4pt}
+        
+        \setlength\parindent{0pt}
+        \setlength\parskip{0.2cm}
+        
+        %
+        % Create Problem Sections
+        %
+        
+        \newcommand{\enterProblemHeader}[1]{
+            \nobreak\extramarks{}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+            \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+        }
+        
+        \newcommand{\exitProblemHeader}[1]{
+            \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+            \stepcounter{#1}
+            \nobreak\extramarks{Problem \arabic{#1}}{}\nobreak{}
+        }
+        
+        \setcounter{secnumdepth}{0}
+        \newcounter{partCounter}
+        \newcounter{homeworkProblemCounter}
+        \setcounter{homeworkProblemCounter}{1}
+        \nobreak\extramarks{Problem \arabic{homeworkProblemCounter}}{}\nobreak{}
+        
+        %
+        % Homework Problem Environment
+        %
+        % This environment takes an optional argument. When given, it will adjust the
+        % problem counter. This is useful for when the problems given for your
+        % assignment aren't sequential. See the last 3 problems of this template for an
+        % example.
+        %
+        \newenvironment{homeworkProblem}[1][-1]{
+            \ifnum#1>0
+                \setcounter{homeworkProblemCounter}{#1}
+            \fi
+            \section{Problem \arabic{homeworkProblemCounter}}
+            \setcounter{partCounter}{1}
+            \enterProblemHeader{homeworkProblemCounter}
+        }{
+            \exitProblemHeader{homeworkProblemCounter}
+        }
+        
+        %
+        % Homework Details
+        %   - Title
+        %   - Due date
+        %   - Class
+        %   - Author
+        %
+        
+        \newcommand{\hmwkTitle}{Homework\ \#8}
+        \newcommand{\hmwkDueDate}{March 30, 2018}
+        \newcommand{\hmwkClass}{CS 4823}
+        \newcommand{\hmwkAuthorName}{\textbf{Christopher Tse}}
+        
+        %
+        % Title Page
+        %
+        
+        \title{
+            \vspace{2in}
+            \textmd{\textbf{\hmwkClass:\ \hmwkTitle}}\\
+            \normalsize\vspace{0.1in}\small{Due\ on\ \hmwkDueDate}\\
+            \vspace{3in}
+        }
+        
+        \author{\hmwkAuthorName}
+        \date{}
+        
+        \renewcommand{\part}[1]{\textbf{\large Part \Alph{partCounter}}\stepcounter{partCounter}\\}
+        
+        %
+        % Various Helper Commands
+        %
+        
+        % Useful for algorithms
+        \newcommand{\alg}[1]{\textsc{\bfseries \footnotesize #1}}
+        
+        % For derivatives
+        \newcommand{\deriv}[1]{\frac{\mathrm{d}}{\mathrm{d}x} (#1)}
+        
+        % For partial derivatives
+        \newcommand{\pderiv}[2]{\frac{\partial}{\partial #1} (#2)}
+        
+        % Integral dx
+        \newcommand{\dx}{\mathrm{d}x}
+        
+        % Alias for the Solution section header
+        \newcommand{\solution}{\textbf{\large Solution}}
+        
+        % Probability commands: Expectation, Variance, Covariance, Bias
+        \newcommand{\E}{\mathrm{E}}
+        \newcommand{\Var}{\mathrm{Var}}
+        \newcommand{\Cov}{\mathrm{Cov}}
+        \newcommand{\Bias}{\mathrm{Bias}}
+        \newcommand{\Z}{\mathbb{Z}}
+        
+        \begin{document}
+        
+        \maketitle
+        
+        \pagebreak
+        
+        \begin{homeworkProblem}
+            Suppose that a Hill cipher with alphabet {0,1} and block length 3 is used to encrypt messages.  And suppose that we discover three plaintext-ciphtertext pairs:
+            
+            \[ (100) \rightarrow (101),\ (110) \rightarrow (110),\ (111) \rightarrow (001) \]
+            
+            Recover the encryption key.
+            
+            \textbf{Solution}
+            
+            Since Hill Ciphers are in the form $C = KP$ where C is ciphertext, K is the key, and P is the plaintext, we can set up a matrix equation with the given pairs as such:
+            \[
+                K
+                \begin{pmatrix}
+                    1 & 0 & 0\\
+                    1 & 1 & 0\\
+                    1 & 1 & 1
+                \end{pmatrix}
+                =
+                \begin{pmatrix}
+                    1 & 0 & 1\\
+                    1 & 1 & 0\\
+                    0 & 0 & 1
+                \end{pmatrix}
+            \]
+            
+            To find K, we must first ensure P is invertible. Since det(P) is not 0, it is invertible.
+            
+            We then determine the inverse of P, $P^{-1}$, which gives:
+            
+            \[
+                P^{-1} = 
+                \begin{pmatrix}
+                    1 & 0 & 0\\
+                    1 & 1 & 0\\
+                    0 & 1 & 1
+                \end{pmatrix}
+            \]
+            
+            Since KP = C, then $CP^{-1} = K$
+            
+            \[
+                \begin{pmatrix}
+                    1 & 0 & 1\\
+                    1 & 1 & 0\\
+                    0 & 0 & 1
+                \end{pmatrix}
+                \cdotp
+                \begin{pmatrix}
+                    1 & 0 & 0\\
+                    1 & 1 & 0\\
+                    0 & 1 & 1
+                \end{pmatrix}
+                =
+                \begin{pmatrix}
+                    1 & 0 & 1\\
+                    0 & 1 & 1\\
+                    1 & 1 & 1
+                \end{pmatrix}
+            \]
+        \end{homeworkProblem}
+        
+        \pagebreak
+        
+        \begin{homeworkProblem}
+            Explain why in the AES S-box, the hexadecimal number \texttt{0x93} is substituted by \texttt{0xdc}. Please show step-by-step calculations
+            
+            \textbf{Solution}
+            
+            To find the S-box substitutions, we first find the inverse of our desired value over GF(2) and find the binary representation.
+            
+            \[ \texttt{0x93} \rightarrow \texttt{0x6D} = \texttt{0b01101101} \]
+            
+            We then perform logical AND on this binary representation with the affine transformation matrix as follows:
+            
+            \begin{verbatim}
+    Input  1 0 1 1 0 1 1 0 (LSB First)
+    Row 0  1 0 0 0 1 1 1 1
+    Bit 0  1 0 0 0 0 1 1 0 = 1
+    
+    Row 1  1 1 0 0 0 1 1 1
+    Bit 1  1 0 0 0 0 1 1 0 = 1
+    
+    Row 2  1 1 1 0 0 0 1 1 
+    Bit 2  1 0 1 0 0 0 1 0 = 1
+    
+    Row 3  1 1 1 1 0 0 0 1
+    Bit 3  1 0 1 1 0 0 0 0 = 1
+    
+    Row 4  1 1 1 1 1 0 0 0
+    Bit 4  1 0 1 1 0 0 0 0 = 1
+    
+    Row 5  0 1 1 1 1 1 0 0
+    Bit 5  0 0 1 1 0 1 0 0 = 1
+    
+    Row 6  0 0 1 1 1 1 1 0 
+    Bit 6  0 0 1 1 0 1 1 0 = 0
+    
+    Row 7  0 0 0 1 1 1 1 1
+    Bit 7  0 0 0 1 0 1 1 0 = 1
+            \end{verbatim}
+            
+            Writing the binary result with MSB First, we get \texttt{0b10111111}, or \texttt{0xbf}. Finally, we XOR this result with \texttt{0x63} to get the s-box substitution value:
+            
+            \[
+                \texttt{0xbf} \mathbin{\oplus} \texttt{0x63} = \texttt{0xdc}
+            \]
+        \end{homeworkProblem}
+        
+        \pagebreak
+        
+        \begin{homeworkProblem}
+            Suppose the current state matrix before the AES MixColumns transformation is
+            
+            \[
+                \begin{pmatrix}
+                    O & K & L & A\\
+                    H & O & M & A\\
+                    I & L & L & I\\
+                    N & O & I & S
+                \end{pmatrix}
+            \]
+            
+            (each letter is encoded as a byte according to the ASCII table), write a program to calculate the output state after the MixColumns transformation.
+            
+            \textbf{Solution}
+            
+            Solution begins on next page.
+            
+            \pagebreak
+            
+            \begin{lstlisting}[language=python]
+// mixcolumns.sage
+from sage.crypto.mq.rijndael_gf import RijndaelGF
+from sage.crypto.util import bin_to_ascii
+
+def my_mix_columns(string):
+    """
+    Takes an input string and performs AES
+    MixColumns transform on it
+    
+    Arguments:
+        string {str} -- Input string
+        
+    Throws:
+        ValueError -- Input string must be 16 characters long
+    """
+    if len(string) != 16:
+        raise ValueError("Input string must be 16 characters long")
+        return
+        
+    rgf = RijndaelGF(4, 4)
+    
+    s = HexadecimalStrings().encoding(string)
+    
+    state = rgf._hex_to_GF(str(s))
+    result = rgf.mix_columns(state)
+    line = rgf._GF_to_hex(result)
+    
+    n = 2
+    split = [line[i:i+n] for i in range(0, len(line), n)]
+    
+    def parse_and_mod(n):
+        n = int(n, base=16)
+        hexval = str(hex(n))
+        return bin_to_ascii(Integer(int(hexval, base=16)).binary().zfill(8))
+        
+        
+    
+    encoded = "".join(map(parse_and_mod, split))
+    print encoded      
+            \end{lstlisting}
+            
+            \begin{verbatim}
+sage: my_mix_columns("OKLAHOMAILLINOIS")
+NL_TM@^XCLFIWXfr
+            \end{verbatim}
+            
+            Therefore the resulting matrix would be
+            
+            \[
+                \begin{pmatrix}
+                    N & L & \_ & T\\
+                    M & @ & \hat{} & X\\
+                    C & L & F & I\\
+                    W & X & f & r
+                \end{pmatrix}
+            \]
+        \end{homeworkProblem}
+\end{document}
